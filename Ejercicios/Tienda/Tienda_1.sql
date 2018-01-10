@@ -9,7 +9,7 @@ CREATE TABLE PERSONA (
     Edad TINYINT unsigned NOT NULL,
     Fecha_Nacimiento DATE NOT NULL,
     PRIMARY KEY (Nombre, Primer_Apellido, Segundo_Apellido)
- )ENGINE=InnoDB;
+ );
 
 
 CREATE TABLE PRODUCTO (
@@ -19,12 +19,16 @@ CREATE TABLE PRODUCTO (
     Imagen VARCHAR(255) NOT NULL,
     Precio FLOAT NOT NULL,
     PRIMARY KEY (ID)
-    )ENGINE=InnoDB;
+    );
 
 CREATE TABLE PEDIDOS (
-    Nombre_PERSONA VARCHAR(20) NOT NULL,
-    Primer_Apellido_PERSONA VARCHAR(20) NOT NULL,
-    Segundo_Apellido_PERSONA VARCHAR(20) NOT NULL,
-    ID_PRODUCTO INT NOT NULL,
-    Cantidad INT NOT NULL
-)ENGINE=InnoDB;
+    Nombre_PERSONA VARCHAR(20),
+    Primer_Apellido_PERSONA VARCHAR(20),
+    Segundo_Apellido_PERSONA VARCHAR(20),
+    ID_PRODUCTO INT,
+    Cantidad INT,
+    FOREIGN KEY (Nombre_PERSONA, Primer_Apellido_PERSONA, Segundo_Apellido_PERSONA)
+    REFERENCES PERSONA (Nombre, Primer_Apellido, Segundo_Apellido),
+    FOREIGN KEY (ID_PRODUCTO)
+    REFERENCES PRODUCTO (ID)
+);
