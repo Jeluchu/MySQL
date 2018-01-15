@@ -1,3 +1,9 @@
+/*
+AUTOR: JESÚS MARÍA CALDERÓN CRESPO
+GITHUB: http://www.github.com/Jeluchu
+WEB: https://jeluchu.github.io
+*/
+
 DROP DATABASE IF EXISTS Familia;
 CREATE DATABASE Familia;
 USE Familia;
