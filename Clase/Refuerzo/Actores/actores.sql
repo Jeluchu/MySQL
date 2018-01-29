@@ -31,7 +31,7 @@ CREATE TABLE ACTORES(
 CREATE TABLE PERSONAJES(
     Codigo INT(10),
     Nombre VARCHAR(20),
-    Grado VARCHAR(20),
+    Grado VARCHAR(20), /* DEL 0-10 */
     Codigo_ACTORES INT(10),
     CodigoSuperior_PERSONAJES INT(10),
     Nacionalidad VARCHAR(20),
@@ -45,6 +45,44 @@ CREATE TABLE PERSONAJES(
 CREATE TABLE PLANETAS(
     Codigo INT(10),
     Galaxia VARCHAR(20)
+    Nombre VARCHAR(20),
+    PRIMARY KEY (Codigo)
+);
+
+CREATE TABLE PELICULAS(
+    Codigo INT(10),
+    Titulo VARCHAR(20)
+    Director VARCHAR(20),
+    Ano TIMESTAMP(2),
+    PRIMARY KEY (Codigo)
+);
+
+
+CREATE TABLE PERSONAJESPELICULAS(
+    Codigo_PERSONAJES INT(10),
+    Codigo_PELICULAS INT(10);
+    FOREIGN KEY (Codigo_PERSONAJES)
+    REFERENCES PERSONAJES(Codigo),
+    FOREIGN KEY (Codigo_PLANETAS)
+    REFERENCES PLANETAS(Codigo),
+);
+
+CREATE TABLE VISITAS(
+    Codigo_NAVES INT(10),
+    Codigo_Naves INT(10),
+    Codigo_PLANETAS INT(10),
+    Codigo_PELICULAS INT(10),
+    FOREIGN KEY (Codigo_NAVES)
+    REFERENCES NAVES(Codigo),
+    FOREIGN KEY (Codigo_PLANETAS)
+    REFERENCES PLANETAS(Codigo),
+    FOREIGN KEY (Codigo_PELICULAS)
+    REFERENCES PELICULAS(Codigo),
+);
+
+CREATE TABLE NAVES(
+    Codigo INT(10),
+    NumTripulantes INT(3)
     Nombre VARCHAR(20),
     PRIMARY KEY (Codigo)
 );
