@@ -11,34 +11,34 @@ USE ZOO;
 
 /* CREAMOS LAS TABLAS CON SUS VARIABLES */
 CREATE TABLE ZOO(
-    nombre VARCHAR(20),
-    ciudad VARCHAR(20),
-    país VARCHAR(20),
+    nombre VARCHAR(30),
+    ciudad VARCHAR(30),
+    país VARCHAR(30),
     tamaño ENUM('A','B'),
     presupuesto FLOAT UNSIGNED,
     PRIMARY KEY (nombre)
 );
 
 CREATE TABLE ESPECIE(
-    nombcientifico VARCHAR(20),
-    nombvulgar VARCHAR(20) NOT NULL,
-    familia VARCHAR(20),
+    nombcientifico VARCHAR(30),
+    nombvulgar VARCHAR(30) NOT NULL,
+    familia VARCHAR(30),
     peligro INT(1),
     PRIMARY KEY (nombcientifico)
 );
 
 CREATE TABLE ANIMAL(
     ID INT(4),
-    nomzoo VARCHAR(20),
-    nomespecie VARCHAR(20),
-    sexo ENUM('Masculino', 'Femenino'),
+    nomzoo VARCHAR(30),
+    nomespecie VARCHAR(30),
+    sexo ENUM ('Masculino', 'Femenino'),
     añonacim YEAR,
-    país VARCHAR(20),
-    continente VARCHAR(20),
+    país VARCHAR(30),
+    continente VARCHAR(30),
     PRIMARY KEY (ID),
-    FOREIGN KEY (nomzoo)
+    CONSTRAINT FK_ZOO FOREIGN KEY (nomzoo)
     REFERENCES ZOO (nombre),
-    FOREIGN KEY (nomespecie)
+    CONSTRAINT FK_ESPECIE FOREIGN KEY (nomespecie)
     REFERENCES ESPECIE (nombcientifico)
 );
 
@@ -50,6 +50,17 @@ REFERENCES ZOO(nombre) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /* PARTE C */
 
-INSERT INTO ZOO VALUES ('Zoo Madrid', 'Madrid', 'España', 'A', 608,42);
-INSERT INTO ESPECIE VALUES ('Panthera Tigris', 'Tigre', 'Felinos', 'Alto');
-INSERT INTO ANIMAL VALUES ('Zoo Madrid', 'Panthera Tigris', 'Macho', '2013', 'India', 'Asia');
+INSERT INTO ZOO VALUES ('Zoo Madrid', 'Madrid', 'España', 'A', 608.42);
+INSERT INTO ZOO VALUES ('Zoo Londres', 'Londres', 'UK', 'B', 0);
+INSERT INTO ESPECIE VALUES ('Panthera Tigris', 'Tigre', 'Felinos', 5);
+INSERT INTO ANIMAL(nomzoo,nomespecie,sexo,añonacim,país,continente) VALUES ('Zoo Madrid', 'Panthera Tigris', 'Masculino', 2013, 'India', 'Asia');
+
+/* PARTE D */
+UPDATE ZOO SET nombre='Zoo Madrid - Vodafone' WHERE nombre='Zoo Madrid';
+
+
+/* MUESTRA LAS TABLAS */
+SHOW TABLES;
+SELECT * FROM ZOO;
+SELECT * FROM ESPECIE;
+SELECT * FROM ANIMAL;
